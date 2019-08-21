@@ -1,0 +1,56 @@
+{
+  "name": "ts-starter",
+  "version": "1.0.0",
+  "author": "Morgan Sliman <morgansliman@gmail.com>",
+  "repository": "https://github.com/morgansliman/ts-starter",
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.2",
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^2.0.0",
+    "concurrently": "^4.1.2",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.1",
+    "snazzy": "^8.0.0",
+    "standard": "^14.0.0",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "debug": "yarn build && yarn watch-debug",
+    "lint": "tsc --noEmit && standard --verbose --fix **/*.ts | snazzy",
+    "serve-debug": "nodemon --inspect dist/server.js",
+    "start": "node dist/server.js",
+    "test": "jest --coverage --verbose",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"yarn watch-ts\" \"yarn watch-node\"",
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"yarn watch-ts\" \"yarn serve-debug\"",
+    "watch-node": "nodemon dist/server.js",
+    "watch-test": "yarn test -- --watchAll",
+    "watch-ts": "tsc -w"
+  },
+  "standard": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint/eslint-plugin"
+    ],
+    "ignore": [
+      "dist/*",
+      "coverage/*",
+      "**/*.d.ts",
+      "src/types"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*": [
+      "yarn lint",
+      "git add"
+    ]
+  }
+}

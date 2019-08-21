@@ -1,0 +1,35 @@
+node_modules
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.swp
+
+pids
+logs
+results
+tmp
+
+# Build output
+dist
+
+# Coverage reports
+coverage
+
+# Secrets
+.env
+
+# Editors
+.idea
+*.iml
+
+# OS Metadata
+.DS_Store
+Thumbs.db
+
+# Project uses yarn not npm
+package-lock.json
